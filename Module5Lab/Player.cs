@@ -11,13 +11,36 @@ namespace Module5Lab
     /// Represents a player in the game, tracking their identity, progress, and health.
     /// </summary>
     internal class Player
-    { /// fields
+    { // ---fields---
+      // The player's name
         private string name;
-        
+        // The current score accumulated by the player
         private int score;
 
-        // 'protected' allows derived classes (like a SuperPlayer) to access this directly
-        protected int livesLeft;
+       // The current number of lives remaining
+        private int livesLeft;
+        // The max capacity for Lives
+        private int maxLives = 10;
+
+        //---Methods---
+        
+        ///<summary>
+        /// Adjusts the player's life count and ensures it stays within valid bounds.
+        /// Accessible only by this class and its derived (child) classes.
+        /// </summary>
+        
+        /// The number of lives to add (positive) or subtract (negative).
+        protected void ModifyLives(int amount)
+        {
+        livesLeft += amount;
+
+        // Safety Check: Ensure lives don't exceed max or drop below zero
+        if (livesLeft > maxLives) livesLeft = maxLives;
+        if (livesLeft < 0) livesLeft = 0;
+
+        // Trigger Side Effects: Notify the console of the change
+        Console.WriteLine($"Lives are now: {livesLeft}");
+        }
 
         /// <summary>
         /// Default constructor. Initializes a new instance of a player with default values.

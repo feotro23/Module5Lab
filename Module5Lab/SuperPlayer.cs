@@ -19,14 +19,12 @@ namespace Module5Lab
 
         /// <summary>
         /// Restores health to the SuperPlayer.
-        /// Directly increments the protected 'livesLeft' field inherited from the Player class.
         /// </summary>
         public void Heal()
-        {
-            Console.WriteLine("SuperPlayer casts Heal! Gains 1 Life.");
-            // Because livesLeft is 'protected' in the Player class, 
-            // we can access and modify it here without a setter method.
-            livesLeft ++;
-        }
+    {
+        Console.WriteLine("SuperPlayer casts Heal!");
+        // We ask the parent to update the lives safely.
+        ModifyLives(1); 
+    }
     }
 }
